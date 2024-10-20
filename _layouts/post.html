@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<article class="post">
+  <div class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <p class="post-p">{{site.author}}</p>
+      <p class="post-p">{{page.date | date: "%B %e, %Y"}}</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="post-tags">
+      {% if post %}
+        {% assign categories = post.categories %}
+      {% else %}
+        {% assign categories = page.categories %}
+      {% endif %}
+      {% for category in categories %}
+        <a href="{{site.baseurl}}/categories/#{{category|slugize}}" class="post-tag-url">{{category}}</a>
+        {% unless forloop.last %}&nbsp;{% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+    
+  <div class="entry">
+    {{ content }}
+  </div>
+
+  <!--<div class="date">
+    Written on {{ page.date | date: "%B %e, %Y" }}
+  </div>-->
+
+  {% include disqus.html %}
+</article>
