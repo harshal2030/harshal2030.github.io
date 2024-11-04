@@ -33,10 +33,10 @@
     <body>
         <div id="bar"></div>
         <div class="wrapper-container">
-            <div class="wrapper-masthead">
+            <!-- <div class="wrapper-masthead">
                 <div class="container">
                     <header class="masthead clearfix">
-                        <a href="{{ site.baseurl }}/" class="site-avatar"
+                        <a href="{{ site.baseurl }}/" class="site-avatar a-url"
                             ><img
                                 src="{{ site.baseurl }}{{ site.avatar }}"
                                 alt="{{ site.title }}"
@@ -44,7 +44,7 @@
 
                         <div class="site-info">
                             <h1 class="site-name">
-                                <a href="{{ site.baseurl }}/"
+                                <a href="{{ site.baseurl }}/" class="a-url"
                                     >{{ site.name }}</a
                                 >
                             </h1>
@@ -54,12 +54,92 @@
                         </div>
 
                         <nav>
-                            <a href="{{ site.baseurl }}/">About</a>
-                            <a href="{{ site.baseurl }}/blogs">Blog</a>
-                            <a href="{{ site.baseurl }}/knowledge">Knowledge</a>
+                            <a href="{{ site.baseurl }}/" class="a-url"
+                                >About</a
+                            >
+                            <a href="{{ site.baseurl }}/blogs" class="a-url"
+                                >Blog</a
+                            >
+                            <a href="{{ site.baseurl }}/knowledge" class="a-url"
+                                >Knowledge</a
+                            >
                         </nav>
                     </header>
                 </div>
+            </div> -->
+
+            <div class="wrapper-masthead">
+                <div class="container">
+                    <header class="header">
+                        <div style="display: flex">
+                            <a
+                                href="{{ site.baseurl }}/"
+                                class="site-avatar a-url"
+                                ><img
+                                    src="{{ site.baseurl }}{{ site.avatar }}"
+                                    alt="{{ site.title }}"
+                            /></a>
+                            <div class="site-info">
+                                <h1 class="site-name">
+                                    <a href="{{ site.baseurl }}/" class="a-url"
+                                        >{{ site.name }}</a
+                                    >
+                                </h1>
+                                <p class="site-description">
+                                    {{ site.description }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <nav class="menu">
+                            <ul>
+                                <li>
+                                    <a href="{{ site.baseurl }}/" class="a-url"
+                                        >About</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="{{ site.baseurl }}/blogs"
+                                        class="a-url"
+                                        >Blog</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="{{ site.baseurl }}/knowledge"
+                                        class="a-url"
+                                        >Knowledge</a
+                                    >
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="hamburger" onclick="toggleMenu()">
+                            &#9776;
+                        </div>
+                    </header>
+                </div>
+            </div>
+            <div class="menu-overlay" id="menuOverlay">
+                <nav class="menu-slide">
+                    <ul>
+                        <li>
+                            <a href="{{ site.baseurl }}/" class="a-url"
+                                >About</a
+                            >
+                        </li>
+                        <li>
+                            <a href="{{ site.baseurl }}/blogs" class="a-url"
+                                >Blog</a
+                            >
+                        </li>
+                        <li>
+                            <a href="{{ site.baseurl }}/knowledge" class="a-url"
+                                >Knowledge</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
             <div class="wrapper-main">
@@ -74,5 +154,12 @@
         </div>
 
         {% include analytics.html %}
+        <script>
+            function toggleMenu() {
+                const menuOverlay = document.getElementById("menuOverlay");
+                menuOverlay.style.right =
+                    menuOverlay.style.right === "0%" ? "-100%" : "0%";
+            }
+        </script>
     </body>
 </html>

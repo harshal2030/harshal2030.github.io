@@ -191,6 +191,20 @@ table tr td :last-child {
     color: white; /* Change text color to white on hover */
 }
 
+.a-url {
+    text-decoration: none;
+}
+
+.a-url:hover {
+    text-decoration: underline;
+    text-decoration-color: black;
+    color: #000;
+}
+
+.a-url:hover::before {
+    transform: scaleY(0);
+}
+
 .outline-btn span {
     position: relative;
     z-index: 1; /* Ensure the text is above the background */
@@ -253,16 +267,6 @@ span[data-pullquote]:before {
     font-style: italic;
     color: green;
     text-align: center;
-}
-
-a {
-    color: $blue;
-    text-decoration: none;
-    cursor: pointer;
-    &:hover,
-    &:active {
-        color: $blue;
-    }
 }
 
 ul,
@@ -373,9 +377,9 @@ p > img {
 .masthead {
     padding: 20px 0;
 
-    @include mobile {
+    /* @include mobile {
         text-align: center;
-    }
+    } */
 }
 
 .site-avatar {
@@ -398,16 +402,6 @@ p > img {
     }
 }
 
-.site-info {
-    float: left;
-
-    @include mobile {
-        float: none;
-        display: block;
-        margin: 0 auto;
-    }
-}
-
 .site-name {
     margin: 0;
     color: $darkGray;
@@ -419,7 +413,7 @@ p > img {
     text-align: left;
 
     @include mobile {
-        text-align: center;
+        margin-left: 10px;
     }
 }
 
@@ -429,34 +423,7 @@ p > img {
     font-size: 16px;
 
     @include mobile {
-        margin: 3px 0;
-    }
-}
-
-nav {
-    float: right;
-    margin-top: 23px; // @TODO: Vertically middle align
-    font-family: "Inter", sans-serif;
-    font-size: 18px;
-
-    @include mobile {
-        float: none;
-        margin-top: 9px;
-        display: block;
-        font-size: 16px;
-    }
-
-    a {
-        margin-left: 20px;
-        color: $darkGray;
-        text-align: right;
-        font-weight: 300;
-        letter-spacing: 1px;
-
-        @include mobile {
-            margin: 0 10px;
-            color: $blue;
-        }
+        margin-left: 10px;
     }
 }
 
@@ -570,14 +537,9 @@ body:after {
     font-kerning: auto;
     font-feature-settings: "kern", "liga", "dlig", "hlig", "cswh";
     font-size: 48px;
-    font-weight: 400;
-    margin: 0;
-}
-
-.custom-h1 {
-    font-family: "Inter", sans-serif;
     font-weight: 500;
     border-bottom: 1px solid #eee;
+    margin: 0;
 }
 
 .page h1 {
@@ -586,6 +548,7 @@ body:after {
     font-kerning: auto;
     font-feature-settings: "kern", "liga", "dlig", "hlig", "cswh";
     line-height: 1.2;
+    border-bottom: 1px solid #eee;
 }
 
 .author_title {
@@ -837,12 +800,12 @@ Modules - reusable parts of our design
     line-height: 35px;
 }
 
-.post-tag-url {
+a {
     position: relative;
     text-decoration: underline;
     color: black;
     text-decoration-color: black;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: 1.5px;
     text-underline-offset: 3px;
     transition:
         color 0.15s ease,
@@ -855,7 +818,7 @@ Modules - reusable parts of our design
     // text-underline-offset: 4px;
 }
 
-.post-tag-url::before {
+a::before {
     content: "";
     position: absolute;
     left: 0;
@@ -869,12 +832,12 @@ Modules - reusable parts of our design
     transition: transform 0.15s ease;
 }
 
-.post-tag-url:hover {
+a:hover {
     color: white;
     text-decoration-color: white;
 }
 
-.post-tag-url:hover::before {
+a:hover::before {
     transform: scaleY(1);
 }
 
@@ -1318,6 +1281,99 @@ Modules - reusable parts of our design
         -ms-transform: translateX(0);
         -o-transform: translateX(0);
         transform: translateX(0);
+    }
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    z-index: 10;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 1.5em;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+}
+
+.menu ul li {
+    margin-left: 15px;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.menu-overlay {
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.7
+    ); /* Adjust the alpha value for desired transparency */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    transition: right 0.2s ease;
+    z-index: 99999;
+}
+
+.menu-slide {
+    height: 100%;
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-slide ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-slide ul li {
+    margin-bottom: 50px;
+}
+
+.menu-slide ul li a {
+    font-size: 18px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        color: #000;
     }
 }
 

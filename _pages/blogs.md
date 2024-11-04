@@ -7,7 +7,7 @@ title: Blogs
 <div>
 {% for post in site.posts %}
             <article class="post-item">
-              <h2 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}" class="post-link">{{ post.title }}</a></h2>
+              <h2 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}" class="a-url">{{ post.title }}</a></h2>
               <p>{{ post.excerpt }}</p>
               <div class="post-footer">
                 <a href="{{ site.baseurl }}{{ post.url }}">
