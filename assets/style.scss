@@ -38,6 +38,15 @@ body {
     width: 100%;
 }
 
+.cross-icon {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 30px;
+    padding-right: 20px;
+    padding-top: 20px;
+    cursor: pointer;
+}
+
 .mobile-container {
     margin-left: 0px;
     margin-right: 0px;
